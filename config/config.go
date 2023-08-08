@@ -14,7 +14,7 @@ type Config struct {
 func InitConfig() {
 	viper.SetConfigName("application")
 	viper.AddConfigPath(".")
-	viper.AddConfigPath("/etc/API_NAME")
+	viper.AddConfigPath("/etc/API_REPO_NAME")
 	viper.SetEnvPrefix("API_ENV_PREFIX")
 	viper.AutomaticEnv()
 }
