@@ -1,0 +1,5 @@
+# Exclude vendor directory from docker container build.
+vendor/
+
+# Exclude git history and gitignore from docker container build.
+.gitignore

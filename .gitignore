@@ -19,3 +19,7 @@
 
 # Go workspace file
 go.work
+
+# Misc
+API_REPO_NAME
+linux-API_REPO_NAME-*
