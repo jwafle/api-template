@@ -38,3 +38,12 @@ test-cover:
 	${GOTEST} test ./... -coverprofile=coverage.out
 	go tool cover -html=coverage.out
 	rm coverage.out
+
+run: build
+	./$(OUTPUT)
+
+# clean will remove the binary
+clean:
+	docker compose -f $(COMPOSE_FP) down
+	rm -f $(OUTPUT)
+	rm -f linux-${OUTPUT}-${VERSION}
