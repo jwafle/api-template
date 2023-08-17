@@ -1,0 +1,10 @@
+version: "1"
+services:
+  api_repo_name:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./resource/application.yml:/etc/api_repo_name/application.yml

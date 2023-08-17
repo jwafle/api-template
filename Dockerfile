@@ -1,19 +1,25 @@
-FROM golang:1.20.7-alpine3.18
+FROM golang:1.20 as build
 
-WORKDIR /app
+WORKDIR /
 
-COPY go.mod go.sum ./
-RUN go mod download
+COPY go ./go
+COPY main.go .
+COPY go.mod .
+COPY go.sum .
+COPY Makefile .
 
-COPY *.go ./
+RUN make build-local
 
-RUN CGO_ENABLED=0 GOOS=linux go build -o /API_REPO_NAME
+FROM scratch as runtime
+WORKDIR /root/
+
+COPY linux-api_repo_name-* api_repo_name
 
 # Optional:
 # To bind to a TCP port, runtime parameters must be supplied to the docker command.
 # But we can document in the Dockerfile what ports
 # the application is going to listen on by default.
 # https://docs.docker.com/engine/reference/builder/#expose
-EXPOSE 8080
+EXPOSE 8080/tcp
 
-CMD ["/API_REPO_NAME"]
+ENTRYPOINT ["/root/api_repo_name"]
